@@ -54,6 +54,9 @@ RUN cd superset/assets \
     && rm -rf node_modules \
     && yarn cache clean
 
+RUN rm -f superset/static/assets \
+  && ln -s ../assets superset/static/assets
+
 COPY contrib/docker/docker-init.sh .
 COPY contrib/docker/docker-entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
